@@ -17,8 +17,13 @@ namespace InterfacesApp.Models.Entities
 
     // ForeignKey
     public int CategoryId { get; set; }
+    public int SupplierId { get; set; }
+
 
     public Category Category { get; set; }
+
+    public Supplier Supplier { get; set; }
+
 
   }
 

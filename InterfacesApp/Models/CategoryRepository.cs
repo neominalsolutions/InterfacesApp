@@ -1,4 +1,5 @@
 ﻿using InterfacesApp.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,31 +11,49 @@ namespace InterfacesApp.Models
   /// <summary>
   /// IRepository Inteface ile belirli bir standart dahilinde aynı method isimlerine sahip davranışları class kazandırmış olduk. zorunlu kıldık.
   /// </summary>
-  public class CategoryRepository : IRepository<Category>
+  public class CategoryRepository :EFRepositoryBase<AppDbContext>, IRepository<Category>
   {
+
+    
+
     public void Create(Category item)
     {
-      throw new NotImplementedException();
+      context.Categories.Add(item);
+      SaveChanges();
     }
 
     public void Delete(int id)
     {
-      throw new NotImplementedException();
+      var entity = context.Categories.Find(id);
+      context.Remove(entity);
+      SaveChanges();
     }
 
     public Category FindById(int id)
     {
-      throw new NotImplementedException();
+      return context.Categories.Include(x => x.Products).FirstOrDefault(x => x.Id == id);
     }
 
     public List<Category> ToList()
     {
-      throw new NotImplementedException();
+      return context.Categories.ToList();
     }
 
     public void Update(int id, Category item)
     {
-      throw new NotImplementedException();
+      var entity = context.Categories.Find(id);
+      entity.Name = item.Name;
+      entity.Description = item.Description;
+
+      //context.Categories.Update(item);
+
+      SaveChanges();
+
+    }
+
+    public override int SaveChanges()
+    {
+      return base.SaveChanges();
     }
   }
 }

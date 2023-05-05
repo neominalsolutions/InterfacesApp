@@ -1,5 +1,6 @@
 using InterfacesApp.Models;
 using InterfacesApp.Models.Entities;
+using System.Net;
 
 namespace InterfacesApp
 {
@@ -20,11 +21,15 @@ namespace InterfacesApp
       plist.OrderBy(x => x.CategoryId).ToList();
 
 
-      var pRepo = new ProductRepository();
-      pRepo.FindById(1);
 
-      var cRepo = new CategoryRepository();
-      cRepo.FindById(2);
+      //var pRepo = new ProductRepository();
+
+      //Product p =  pRepo.FindById(1);
+
+      
+
+
+      
 
 
     }

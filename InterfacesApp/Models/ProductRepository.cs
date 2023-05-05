@@ -10,8 +10,10 @@ namespace InterfacesApp.Models
 {
   // interfaceler bir sınıfa uygulandığında sınıf bu özellikleri yetenekleri göstermez zorunda kalır. buna biz implementation (implementasyon) diyoruz. :Interface kalıtım değil bir implementasyondur.
   // cir sınıf birden fazla interface den implente olabilir.
-  public class ProductRepository : IRepository<Product> 
+  public class ProductRepository:EFRepositoryBase<AppDbContext>,IRepository<Product> 
   {
+ 
+
     public void Create(Product item)
     {
       throw new NotImplementedException();
@@ -22,15 +24,21 @@ namespace InterfacesApp.Models
       throw new NotImplementedException();
     }
 
+ 
+
     public Product FindById(int id)
     {
-      throw new NotImplementedException();
+      return context.Products.Find(id);
     }
+
+ 
 
     public List<Product> ToList()
     {
       throw new NotImplementedException();
     }
+
+    
 
     public void Update(int id, Product item)
     {
