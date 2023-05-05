@@ -21,7 +21,6 @@ namespace InterfacesApp
 
 
       var pRepo = new ProductRepository();
-      pRepo.OrderBy(x => x.Name);
       pRepo.FindById(1);
 
       var cRepo = new CategoryRepository();
